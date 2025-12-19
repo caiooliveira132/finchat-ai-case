@@ -7,11 +7,6 @@
 
 Uma aplicação Fullstack que utiliza **OCR (Tesseract.js)** para ler documentos e **Google Gemini 2.5 Flash** para permitir que o usuário converse com o conteúdo do documento via chat.
 
-## 🔗 Links (Deliverables)
-
-- **Aplicação no Ar (Vercel):** [COLOQUE_SEU_LINK_DA_VERCEL_AQUI]
-- **Repositório:** [COLOQUE_SEU_LINK_DO_GITHUB_AQUI]
-
 ---
 
 ## 🚀 Tecnologias Utilizadas
