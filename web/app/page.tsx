@@ -7,7 +7,6 @@ import {
 } from "lucide-react";
 
 export default function Home() {
-  // --- ESTADOS (Lógica Original Mantida) ---
   const [email, setEmail] = useState("");
   const [user, setUser] = useState<any>(null);
   const [file, setFile] = useState<File | null>(null);
@@ -18,14 +17,13 @@ export default function Home() {
   const [loading, setLoading] = useState(false);
   const [showOcrText, setShowOcrText] = useState(false);
 
-  const API_URL = "http://localhost:3001"; 
+  const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001"; 
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [chatHistory]);
 
-  // --- FUNÇÕES (Lógica Original Mantida) ---
   const handleLogin = async () => {
     if (!email.trim()) return;
     setLoading(true);
@@ -83,7 +81,6 @@ export default function Home() {
     setShowOcrText(false);
   };
 
-  // --- TELA DE LOGIN (Visual Centralizado e Limpo) ---
   if (!user) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-[#f0f4f9] p-4">
@@ -115,7 +112,6 @@ export default function Home() {
     );
   }
 
-  // --- DASHBOARD PRINCIPAL ---
   const currentDoc = documents.find(d => d.id === selectedDocId);
 
   return (
@@ -144,7 +140,7 @@ export default function Home() {
               onClick={() => handleSelectDoc(doc.id)}
               className={`w-full flex items-center gap-3 p-3 rounded-lg text-left transition-all ${
                 selectedDocId === doc.id 
-                  ? 'bg-[#004a77] text-white' // Azul Gemini para selecionado
+                  ? 'bg-[#004a77] text-white'
                   : 'hover:bg-[#2d2e30] text-gray-300'
               }`}
             >
@@ -165,7 +161,6 @@ export default function Home() {
       {/* ÁREA PRINCIPAL CENTRALIZADA */}
       <main className="flex-1 flex flex-col relative overflow-hidden">
         {!selectedDocId ? (
-          // Estado Vazio Centralizado
           <div className="flex-1 flex flex-col items-center justify-center p-4 text-center">
             <div className="w-16 h-16 bg-white rounded-2xl shadow-md flex items-center justify-center mb-6">
               <Sparkles size={32} className="text-blue-500" />
@@ -222,8 +217,8 @@ export default function Home() {
                     
                     <div className={`p-5 rounded-2xl text-[15px] leading-relaxed shadow-sm max-w-[85%] ${
                       msg.role === 'user' 
-                        ? 'bg-[#dbeafe] text-blue-900 rounded-tr-sm ml-auto' // Balão azul claro do usuário
-                        : 'bg-white text-gray-700 rounded-tl-sm border border-gray-100' // Balão branco da IA
+                        ? 'bg-[#dbeafe] text-blue-900 rounded-tr-sm ml-auto'
+                        : 'bg-white text-gray-700 rounded-tl-sm border border-gray-100' 
                     }`}>
                       <p className="whitespace-pre-wrap">{msg.text}</p>
                     </div>
